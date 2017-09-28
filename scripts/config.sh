@@ -9,7 +9,7 @@ export WORKER_DIR="$SCRIPT_DIR/workers"
 export KEY="gdc-user-token.2017-09-28T22-44-17.859Z.txt"
 
 #cart downloaded from dbgap "run browser" container list of files to download
-export CART="normaltiss-5genes.txt"
+export CART="tumorCRC-5genes.txt"
 
 #main download / working directory
 export TCGA_DIR="/rsgrps/bhurwitz/hurwitzlab/data/controlled_access/harmonized"
