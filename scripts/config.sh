@@ -6,13 +6,13 @@ export PRJ_DIR="/rsgrps/bhurwitz/scottdaniel/download-tcga"
 export WORKER_DIR="$SCRIPT_DIR/workers"
 
 #encryption key, change to whatever yours is
-export KEY="gdc-user-token.2017-09-28T22-44-17.859Z.txt"
+export KEY="gdc-user-token.2017-10-04T13-55-09-07-00.txt"
 
 #cart downloaded from dbgap "run browser" container list of files to download
-export CART="tumorCRC-5genes.txt"
+export CART="colorectal_normal_tissue_all_fastq.txt"
 
 #main download / working directory
-export TCGA_DIR="/rsgrps/bhurwitz/hurwitzlab/data/controlled_access/harmonized"
+export TCGA_DIR="/rsgrps/bhurwitz/hurwitzlab/data/controlled_access/legacy"
 # --------------------------------------------------
 function init_dir {
     for dir in $*; do

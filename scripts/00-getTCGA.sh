@@ -26,15 +26,14 @@ if [ ! -d "$TCGA_DIR" ]; then
 fi
 
 cd $TCGA_DIR
-
-#Downloading tcga colorectal normal tissue (but still
-# with mutations in TGFB2, TGFBR2, SMAD2/3/4
-
+OUT=$(basename $CART .txt)
 echo Downloading files in $CART
-echo to $(basename $CART .txt)
+echo to $OUT
+
+mkdir -p $OUT
 
 gdc-client download --token-file $KEY \
     --manifest $CART \
-    --dir $(basename $CART .txt) \
+    --dir $OUT \
     --log-file $SCRIPT_DIR/out/download-progress.txt
 
