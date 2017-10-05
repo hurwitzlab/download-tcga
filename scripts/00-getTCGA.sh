@@ -33,6 +33,8 @@ cd $TCGA_DIR
 echo Downloading files in $CART
 echo to $(basename $CART .txt)
 
+mkdir -p $(basename $CART .txt)
+
 gdc-client download --token-file $KEY \
     --manifest $CART \
     --dir $(basename $CART .txt) \
