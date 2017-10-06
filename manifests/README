@@ -1,0 +1,5 @@
+this is RNA sequencing data of normal tissue to colon tumor tissue
+we have determined that the WGS data is innapropriate
+because the matched controls for tumor samples are usually blood
+it would not tell us much comparing colon tumor bacteria 
+with blood bacteria!
