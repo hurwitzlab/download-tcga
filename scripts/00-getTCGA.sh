@@ -2,13 +2,15 @@
 
 #PBS -W group_list=bhurwitz
 #PBS -q standard
-#PBS -l select=1:ncpus=2:mem=3gb
+#PBS -l select=1:ncpus=6:mem=24gb
 #PBS -l walltime=72:00:00
 #PBS -l cput=72:00:00
 #PBS -M scottdaniel@email.arizona.edu
 #PBS -m ea
 #PBS -j oe
 #PBS -o out/
+
+export N_PROCESSES="6" #number of threads
 
 export WD=$PBS_O_WORKDIR
 
@@ -37,6 +39,7 @@ mkdir -p $(basename $CART .txt)
 
 gdc-client download --token-file $KEY \
     --manifest $CART \
+    -n $N_PROCESSES
     --dir $(basename $CART .txt) \
     --log-file $SCRIPT_DIR/out/download-progress.txt
 
