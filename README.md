@@ -1,2 +1,2 @@
-# download-tcga
-Scripts to download / manipulate TCGA data from GDC
+# download-ebi
+Scripts to download EBI data
