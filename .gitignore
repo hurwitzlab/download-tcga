@@ -24,3 +24,4 @@ bin-release/
 *.log
 out/
 .Rproj.user
+files_to_get_list
