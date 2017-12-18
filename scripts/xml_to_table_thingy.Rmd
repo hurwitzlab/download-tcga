@@ -15,8 +15,9 @@ The preview shows you a rendered HTML copy of the contents of the editor. Conseq
 
 ```{r}
 setwd("~/Google Drive/Hurwitz Lab/Postdocking/PRJEB12449")
-(library("xml2", lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
-)
+library("xml2", lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+library(xlsx)
+
 ```
 
 #Load the xml as a list and tell us how many samples
@@ -77,5 +78,10 @@ for(i in 1:length(samples)) {
   }
 }
 sampleToReads
+```
+
+#concateneate with metadata
+```{r}
+
 ```
 

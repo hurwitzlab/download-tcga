@@ -28,3 +28,5 @@ files_to_get_list
 *.xls
 *.xml
 *.DS_Store
+*.Rproj
+.Rproj/
