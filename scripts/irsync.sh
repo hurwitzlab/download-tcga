@@ -35,6 +35,6 @@ echo "Started at $(date)"
 
 echo "Syncing single-end read files to irods / cyverse" 
 
-irsync /rsgrps/bhurwitz/hurwitzlab/data/controlled_access/PRJEB12449/single i:/iplant/home/scottdaniel/ebi/single
+irsync -r /rsgrps/bhurwitz/hurwitzlab/data/controlled_access/PRJEB12449/single i:/iplant/home/scottdaniel/ebi/single
 
 echo "Done at $(date)"

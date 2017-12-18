@@ -11,4 +11,5 @@ export CART="$PRJ_DIR/files_to_get_list"
 #main download / working directory
 export DL_DIR="/rsgrps/bhurwitz/hurwitzlab/data/controlled_access/PRJEB12449"
 export DL_PAIRED_DIR="$DL_DIR/paired"
+export DL_SINGLE_DIR="$DL_DIR/single"
 
