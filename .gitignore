@@ -25,3 +25,5 @@ bin-release/
 out/
 .Rproj.user
 files_to_get_list
+*.xls
+*.xml
