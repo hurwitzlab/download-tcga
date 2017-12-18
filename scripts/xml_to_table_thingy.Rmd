@@ -1,0 +1,81 @@
+---
+title: "XML to mapping table"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+setwd("~/Google Drive/Hurwitz Lab/Postdocking/PRJEB12449")
+(library("xml2", lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+)
+```
+
+#Load the xml as a list and tell us how many samples
+```{r}
+samples=as_list(read_xml("samples.xml"))
+length(samples)
+```
+
+#Pick a random sample
+```{r}
+i=6
+samples[i]$SAMPLE$SAMPLE_LINKS[3]$SAMPLE_LINK$XREF_LINK$ID[[1]]
+
+```
+
+#Try to convert the ranges into a vector of strings
+```{r}
+temp1<-gsub("ERR","",samples[i]$SAMPLE$SAMPLE_LINKS[3]$SAMPLE_LINK$XREF_LINK$ID[[1]])
+temp1
+```
+```{r}
+temp2<-strsplit(temp1,",")
+temp2
+```
+```{r}
+f2<-function(x) strsplit(x,"-")
+temp3<-lapply(temp2,f2)
+temp3
+```
+#Make integer vectors from these numbers
+```{r}
+readIds<-c(seq(temp3[[1]][[1]][1],temp3[[1]][[1]][2]),seq(temp3[[1]][[2]][1],temp3[[1]][[2]][2]))
+readIds
+```
+
+#Make data.frame to hold sample id and then the read ids
+```{r}
+i=1
+sampleIds<-vector()
+f2<-function(x) strsplit(x,"-")
+sampleToReads<-data.frame("sampleName"=character(),"readId"=integer())
+
+for(i in 1:length(samples)) {
+  x=strtrim(samples[i]$SAMPLE$IDENTIFIERS$SUBMITTER_ID[[1]],14)
+  sampleIds=c(sampleIds,x)
+}
+sampleIds
+
+for(i in 1:length(samples)) {
+  temp1<-gsub("ERR","",samples[i]$SAMPLE$SAMPLE_LINKS[3]$SAMPLE_LINK$XREF_LINK$ID[[1]])
+  temp2<-strsplit(temp1,",")
+  temp3<-lapply(temp2,f2)
+  readIds<-c(seq(temp3[[1]][[1]][1],temp3[[1]][[1]][2]),seq(temp3[[1]][[2]][1],temp3[[1]][[2]][2]))
+  j=1
+  for(j in 1:length(readIds)) {
+  tempdf<-data.frame("sampleName"=sampleIds[i],"readId"=readIds[j])
+  sampleToReads<-rbind(tempdf,sampleToReads)
+  }
+}
+sampleToReads
+```
+
