@@ -91,5 +91,6 @@ sampleToReads
 metadata=read.xlsx2("metadata_2_NIH.xls",sheetIndex = 1)
 bigTable=merge(sampleToReads,metadata,by.x="sampleName",by.y="embl_id")
 bigTable$readId=paste("ERR",bigTable$readIndex,sep="")
+write.table(bigTable,file="metadata_to_readFileNames.txt",quote = FALSE,sep = "\t",row.names = FALSE,col.names = TRUE)
 ```
 
