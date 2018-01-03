@@ -33,4 +33,4 @@ cd $DL_DIR
 
 echo "Started at $(date)"
 
-ipython $WORKER_DIR/organize.py
+ipython $WORKER_DIR/organize.ipy
