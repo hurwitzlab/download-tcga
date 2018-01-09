@@ -32,37 +32,23 @@ mkdir -p $DL_CONTROL
 
 echo "Moving cancer files"
 
-for prefix in $CANCER_LIST; do
-
 echo "Moving unpaired"
 
-    mv "$DL_SINGLE_DIR"/"$prefix".fastq.gz "$DL_CANCER"/
+for prefix in $CANCER_LIST; do
 
-echo "Lets concatenate those"
-
-    cat "$DL_CANCER"/*.fastq.gz > $DL_DIR/all_cancer_unpaired.fq.gz
-
-    mv "$DL_PAIRED_DIR"/"$prefix"_1.fastq.gz "$DL_CANCER"/
-    mv "$DL_PAIRED_DIR"/"$prefix"_2.fastq.gz "$DL_CANCER"/
+    #cancer list includes paired and unpaired so we can ignore "file not found" errors
+    mv "$DL_SINGLE_DIR"/"$prefix".fastq.gz "$DL_CANCER"/ 2> /dev/null
 
 done
 
-echo "Moving control files"
-
-for prefix in $CONTROL_LIST; do
-
-echo "Moving unpaired"
-
-    mv "$DL_SINGLE_DIR"/"$prefix".fastq.gz "$DL_CONTROL"/
-
 echo "Lets concatenate those"
 
-    cat "$DL_CONTROL"/*.fastq.gz > $DL_DIR/all_control_unpaired.fq.gz
+cat "$DL_CANCER"/*.fastq.gz > $DL_DIR/all_cancer_unpaired.fq.gz
 
-echo "Moving paired"
+for prefix in $CANCER_LIST; do
 
-    mv "$DL_PAIRED_DIR"/"$prefix"_1.fastq.gz "$DL_CONTROL"/
-    mv "$DL_PAIRED_DIR"/"$prefix"_2.fastq.gz "$DL_CONTROL"/
+    mv "$DL_PAIRED_DIR"/"$prefix"_1.fastq.gz "$DL_CANCER"/ 2> /dev/null
+    mv "$DL_PAIRED_DIR"/"$prefix"_2.fastq.gz "$DL_CANCER"/ 2> /dev/null
 
 done
 
@@ -70,6 +56,32 @@ echo "What the heck, lets do more concatenating"
 
 cat "$DL_CANCER"/*_1.fastq.gz > "$DL_DIR"/all_cancer_1.fq.gz
 cat "$DL_CANCER"/*_2.fastq.gz > "$DL_DIR"/all_cancer_2.fq.gz
+
+echo "Moving control files"
+
+echo "Moving unpaired"
+
+for prefix in $CONTROL_LIST; do
+
+    mv "$DL_SINGLE_DIR"/"$prefix".fastq.gz "$DL_CONTROL"/ 2> /dev/null
+
+done
+
+echo "Lets concatenate those"
+
+cat "$DL_CONTROL"/*.fastq.gz > $DL_DIR/all_control_unpaired.fq.gz
+
+echo "Moving paired"
+
+for prefix in $CONTROL_LIST; do
+
+    mv "$DL_PAIRED_DIR"/"$prefix"_1.fastq.gz "$DL_CONTROL"/ 2> /dev/null
+    mv "$DL_PAIRED_DIR"/"$prefix"_2.fastq.gz "$DL_CONTROL"/ 2> /dev/null
+
+done
+
+echo "What the heck, lets do more concatenating"
+
 cat "$DL_CONTROL"/*_1.fastq.gz > "$DL_DIR"/all_control_1.fq.gz
 cat "$DL_CONTROL"/*_2.fastq.gz > "$DL_DIR"/all_control_2.fq.gz
 
