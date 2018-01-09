@@ -94,3 +94,10 @@ bigTable$readId=paste("ERR",bigTable$readIndex,sep="")
 write.table(bigTable,file="metadata_to_readFileNames.txt",quote = FALSE,sep = "\t",row.names = FALSE,col.names = TRUE)
 ```
 
+#make it real simple for a script to parse for file organization
+```{r}
+just_cancer = bigTable[bigTable$casectl==1,]
+just_control = bigTable[bigTable$casectl==0,]
+write.table(just_cancer,file="just_cancer_metadata.txt",quote = FALSE,sep = "\t",row.names = FALSE,col.names = TRUE)
+write.table(just_control,file="just_control_metadata.txt",quote = FALSE,sep = "\t",row.names = FALSE,col.names = TRUE)
+```
