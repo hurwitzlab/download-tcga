@@ -15,4 +15,5 @@ export DL_SINGLE_DIR="$DL_DIR/single"
 
 #mapping for sample metadata
 export METADATA="$DL_DIR/metadata_to_readFileNames.txt"
-
+export CANCER_LIST="$(cut -f 8 $DL_DIR/just_cancer_metadata.txt)"
+export CONTROL_LIST="$(cut -f 8 $DL_DIR/just_control_metadata.txt)"

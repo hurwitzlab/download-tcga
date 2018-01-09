@@ -25,12 +25,8 @@ else
     exit 12345
 fi
 
-if [ ! -d "$DL_DIR" ]; then
-    mkdir -p $DL_DIR
-fi
-
-cd $DL_DIR
-
 echo "Started at $(date)"
 
-ipython $WORKER_DIR/organize.ipy
+ipython $WORKER_DIR/organize.ipy --directory $DL_DIR
+
+echo "Finished at $(date)"
