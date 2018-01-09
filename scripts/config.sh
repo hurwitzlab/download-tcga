@@ -12,6 +12,8 @@ export CART="$PRJ_DIR/files_to_get_list"
 export DL_DIR="/rsgrps/bhurwitz/hurwitzlab/data/controlled_access/PRJEB12449"
 export DL_PAIRED_DIR="$DL_DIR/paired"
 export DL_SINGLE_DIR="$DL_DIR/single"
+export DL_CANCER="$DL_DIR/cancer"
+export DL_CONTROL="$DL_DIR/control"
 
 #mapping for sample metadata
 export METADATA="$DL_DIR/metadata_to_readFileNames.txt"
